@@ -1,0 +1,9 @@
+{
+  "README": "You must supply the following information in order for CorpusHandling to work. Save your file as config.json.",
+  
+  "README-baseDir": "This is the directory where you want to save the different subcorpora you create.",
+  "baseDir": "", 
+  
+  "README-subCorporaDir": "This is the directory where you want to save a particular subcorpus.",
+  "subCorporaDir": ""
+}

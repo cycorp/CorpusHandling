@@ -1,0 +1,47 @@
+# The following PMC IDs were collected via http://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/
+# This corpus, which contains papers based on the filter "cc by license[filter] ebola", contains
+# enough papers to get you started. To examine other papers, you will need to find them via their 
+# PMC id.
+
+# cc by license[filter] ebola
+
+PMC4166725
+PMC4197285
+PMC3477054
+PMC3763195
+PMC3528289
+PMC3276451
+PMC3509674
+PMC3024955
+PMC2375004
+PMC4153011
+PMC4051576
+PMC3172725
+PMC4130433
+PMC3499815
+PMC3533809
+PMC3497058
+PMC3499821
+PMC3284443
+PMC3185555
+PMC3497034
+PMC3497033
+PMC4166718
+PMC4090118
+PMC3528269
+PMC3411508
+PMC4209768
+PMC2761397
+PMC4061899
+PMC3499823
+PMC3433987
+PMC4014719
+PMC3826533
+PMC1334228
+PMC3185794
+PMC2625347
+PMC3215565
+PMC3727213
+PMC1502131
+PMC3985584
+PMC2699336
