@@ -1,4 +1,9 @@
-package com.cyc.corpus.papers;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.cyc.corpus.nlmpaper;
 
 /*
  * #%L
@@ -20,29 +25,12 @@ package com.cyc.corpus.papers;
  * #L%
  */
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+/**
+ *
+ * @author arebguns
+ */
+public interface OpenAccessPaper {
 
-public class SubcollectionIT {
-
-  public SubcollectionIT() {
-  }
-
-  /**
-   * Test of get method, of class Subcollection.
-   */
-  @Test
-  public void testSubcollectionRetrieval() {
-    System.out.println("get");
-    Subcollection result = new Subcollection("sampleCorpus1", 20);
-    assertEquals(20, result.getPapers().size());
-  }
-
-  @Test
-  public void testSubcollectionCreation() {
-    System.out.println("create");
-    Subcollection result = new Subcollection("sampleCorpus2", 20);
-    assertEquals(20, result.getPapers().size());
-  }
-
+  public String getPaperID();
+  public String getAbstract();
 }

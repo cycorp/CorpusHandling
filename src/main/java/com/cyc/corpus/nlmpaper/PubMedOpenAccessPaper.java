@@ -97,7 +97,7 @@ import org.xml.sax.XMLReader;
  * unmarshalled The files needed are at: ftp://ftp.ncbi.nlm.nih.gov/pub/jats/archiving/1.0/
  *
  */
-public class PubMedOpenAccessPaper implements Serializable {
+public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
 
   final static Experiment expt = new CorpusHandlingStrawmanExpt();
   final static String basedir = expt.getBaseDir();

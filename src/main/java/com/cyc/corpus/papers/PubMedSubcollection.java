@@ -22,6 +22,7 @@ package com.cyc.corpus.papers;
 
 import com.cyc.corpus.expts.CorpusHandlingStrawmanExpt;
 import com.cyc.corpus.expts.Experiment;
+import com.cyc.corpus.nlmpaper.OpenAccessPaper;
 import com.cyc.corpus.nlmpaper.PubMedOpenAccessPaper;
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,10 +42,10 @@ import java.util.stream.Collectors;
 
 /**
  * An open access document collection that is a subcollection of papers found in
- InitialCollection.
+ PubMedInitialCollection.
  *
  */
-public class Subcollection extends OpenAccessSubcollection {
+public class PubMedSubcollection extends OpenAccessSubcollection {
 
   static final String usedArticleListFileName = "SamplePMCCorpus_used_articles.txt";
   final static Experiment expt = new CorpusHandlingStrawmanExpt();
@@ -56,9 +57,9 @@ public class Subcollection extends OpenAccessSubcollection {
    * @param subCollectionName the named subcollection to retrieve or create
    * @param setSize the number of articles that should be expected in the set
    */
-  public Subcollection(String subCollectionName, int setSize) {
+  public PubMedSubcollection(String subCollectionName, int setSize) {
     super(subCollectionName);
-    Collection<PubMedOpenAccessPaper> thePapers = load();
+    Collection<OpenAccessPaper> thePapers = load();
     assert thePapers.isEmpty() || thePapers.size()==setSize 
         : "loaded "+getName()+" from "+subCorpusPath()+" but it didn't have expected "+setSize+" papers";
     if (thePapers.isEmpty()) {
@@ -73,39 +74,43 @@ public class Subcollection extends OpenAccessSubcollection {
    * @return a collection of papers
    */
   @Override
-  protected final Collection<PubMedOpenAccessPaper> create(int setSize) {
-    Set<PubMedOpenAccessPaper> paperSet = new HashSet<>();
+  protected final Collection<OpenAccessPaper> create(int setSize) {
+    Set<OpenAccessPaper> paperSet = new HashSet<>();
     // Access to file that tracks articles already in a subcollection
     try {
       BufferedReader paperListSub = new BufferedReader(new FileReader(new File(usedArticleListPath())));
-      final Set<PubMedOpenAccessPaper> used = paperListSub.lines().map(String::trim).map(PubMedOpenAccessPaper::new).collect(Collectors.toSet());
+      final Set<OpenAccessPaper> used = paperListSub.lines().map(String::trim).map(PubMedOpenAccessPaper::new).collect(Collectors.toSet());
       // This predicate checks that the article name hasn't already been used in a subCollection
-      Predicate<PubMedOpenAccessPaper> isNotAlreadyUsed = (PubMedOpenAccessPaper paper) -> !used.contains(paper);
+      Predicate<OpenAccessPaper> isNotAlreadyUsed = (OpenAccessPaper paper) -> !used.contains(paper);
       // Access to the complete list of articles
-      InitialCollection bc = InitialCollection.get();
+      PubMedInitialCollection bc = PubMedInitialCollection.get();
        
       //THIS ACUALLY DOES THE CREATION
-      List<PubMedOpenAccessPaper>paperList=new ArrayList<>(bc.getMyPapers());
+      List<OpenAccessPaper>paperList=new ArrayList<>(bc.getMyPapers());
       Collections.shuffle(paperList);
-      paperSet=paperList.stream().filter(isNotAlreadyUsed).limit(setSize).collect(Collectors.toSet());
+      paperSet=paperList.stream()
+              .filter(isNotAlreadyUsed)
+              .limit(setSize)
+              .collect(Collectors
+                      .toSet());
      
       //Write out the new subcorpus
        try (final PrintWriter pw = new PrintWriter(subCorpusPath())) {
-        paperSet.forEach((PubMedOpenAccessPaper o) -> pw.write(o.getPaperID() + "\n"));
+        paperSet.forEach((OpenAccessPaper o) -> pw.write(o.getPaperID() + "\n"));
       } catch (FileNotFoundException ex) {
-        Logger.getLogger(Subcollection.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(PubMedSubcollection.class.getName()).log(Level.SEVERE, null, ex);
       }
        
      //write out the new, augmented list of papers
       used.addAll(paperSet);
       try (final PrintWriter pw = new PrintWriter(usedArticleListPath())) {
-        used.forEach((PubMedOpenAccessPaper o) -> pw.write(o.getPaperID() + "\n"));
+        used.forEach((OpenAccessPaper o) -> pw.write(o.getPaperID() + "\n"));
       } catch (FileNotFoundException ex) {
-        Logger.getLogger(Subcollection.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(PubMedSubcollection.class.getName()).log(Level.SEVERE, null, ex);
       }
       
     } catch (FileNotFoundException ex) {
-      Logger.getLogger(Subcollection.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(PubMedSubcollection.class.getName()).log(Level.SEVERE, null, ex);
     }
    return paperSet; 
   }

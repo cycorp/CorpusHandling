@@ -20,7 +20,8 @@ package com.cyc.corpus.papers;
  * #L%
  */
 
-import com.cyc.corpus.nlmpaper.PubMedOpenAccessPaper;
+import com.cyc.corpus.nlmpaper.DefaultOpenAccessPaper;
+import com.cyc.corpus.nlmpaper.OpenAccessPaper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -65,17 +66,17 @@ public abstract class OpenAccessSubcollection extends OpenAccessCollection {
    * @return a collection of papers
    */
   @Override
-  protected final Collection<PubMedOpenAccessPaper> load() {
+  protected final Collection<OpenAccessPaper> load() {
     // Access to file that tracks articles already in a subcollection
-    Set<PubMedOpenAccessPaper> paperSet = new HashSet<>();
+    Set<OpenAccessPaper> paperSet = new HashSet<>();
     File subCorpusFile = new File(subCorpusPath());
     if (subCorpusFile.exists() && subCorpusFile.canRead()) {
       BufferedReader paperListSub;
       try {
         paperListSub = new BufferedReader(new FileReader(subCorpusFile));
-        paperSet = paperListSub.lines().map(String::trim).map(PubMedOpenAccessPaper::new).collect(Collectors.toSet());
+        paperSet = paperListSub.lines().map(String::trim).map(DefaultOpenAccessPaper::new).collect(Collectors.toSet());
       } catch (FileNotFoundException ex) {
-        Logger.getLogger(Subcollection.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(PubMedSubcollection.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
     return paperSet;
@@ -86,5 +87,5 @@ public abstract class OpenAccessSubcollection extends OpenAccessCollection {
    * @param setSize the number of papers in the collection
    * @return a collection of papers
    */
-  abstract protected  Collection<PubMedOpenAccessPaper> create(int setSize);
+  abstract protected  Collection<OpenAccessPaper> create(int setSize);
 }
