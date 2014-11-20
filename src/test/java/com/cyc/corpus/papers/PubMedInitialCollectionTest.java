@@ -20,36 +20,35 @@ package com.cyc.corpus.papers;
  * #L%
  */
 
-import com.cyc.corpus.papers.InitialCollection;
-import com.cyc.corpus.nlmpaper.PubMedOpenAccessPaper;
+import com.cyc.corpus.nlmpaper.OpenAccessPaper;
 import java.util.Collection;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
-public class InitialCollectionTest {
+public class PubMedInitialCollectionTest {
 
-  public InitialCollectionTest() {
+  public PubMedInitialCollectionTest() {
   }
 
   /**
-   * Test of get method, of class InitialCollection.
+   * Test of get method, of class PubMedInitialCollection.
    */
   @Test
   public void testGet() {
     System.out.println("get");
-    InitialCollection result = InitialCollection.get();
+    PubMedInitialCollection result = PubMedInitialCollection.get();
     assertNotNull(result);
   }
 
   /**
-   * Test of load method, of class InitialCollection. 
+   * Test of load method, of class PubMedInitialCollection. 
    */
   @Test
   public void testLoad() {
     System.out.println("load");
-    InitialCollection instance = InitialCollection.get();
+    PubMedInitialCollection instance = PubMedInitialCollection.get();
 
-    Collection<PubMedOpenAccessPaper> resultC = instance.getMyPapers();
+    Collection<OpenAccessPaper> resultC = instance.getMyPapers();
     int result = resultC.size();
     int expResult = 40;
     assertEquals(expResult, result);

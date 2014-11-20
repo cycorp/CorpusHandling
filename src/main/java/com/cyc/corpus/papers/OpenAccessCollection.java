@@ -20,7 +20,7 @@ package com.cyc.corpus.papers;
  * #L%
  */
 
-import com.cyc.corpus.nlmpaper.PubMedOpenAccessPaper;
+import com.cyc.corpus.nlmpaper.OpenAccessPaper;
 import java.io.File;
 import java.util.Collection;
 
@@ -31,7 +31,7 @@ import java.util.Collection;
 public abstract class OpenAccessCollection {
 
   private final String name;
-  private Collection<PubMedOpenAccessPaper> papers;
+  private Collection<OpenAccessPaper> papers;
 
   /**
    *
@@ -50,7 +50,7 @@ public abstract class OpenAccessCollection {
    *
    * @return a collection of papers
    */
-  abstract protected Collection<PubMedOpenAccessPaper> load();
+  abstract protected Collection<OpenAccessPaper> load();
 
   /**
    *
@@ -64,7 +64,7 @@ public abstract class OpenAccessCollection {
    *
    * @return a collection of papers
    */
-  public Collection<PubMedOpenAccessPaper> getPapers() {
+  public Collection<OpenAccessPaper> getPapers() {
     return papers;
   }
 
@@ -72,7 +72,7 @@ public abstract class OpenAccessCollection {
    *
    * @param papers a collection of papers
    */
-  protected void setPapers(Collection<PubMedOpenAccessPaper> papers) {
+  protected void setPapers(Collection<OpenAccessPaper> papers) {
     this.papers = papers;
   }
 }

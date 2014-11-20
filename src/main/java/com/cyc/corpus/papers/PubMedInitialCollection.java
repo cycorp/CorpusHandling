@@ -20,6 +20,7 @@ package com.cyc.corpus.papers;
  * #L%
  */
 
+import com.cyc.corpus.nlmpaper.OpenAccessPaper;
 import com.cyc.corpus.nlmpaper.PubMedOpenAccessPaper;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -33,31 +34,31 @@ import java.util.stream.Collectors;
  * An open access document collection that is loaded from a resource.
  *
  */
-public class InitialCollection extends OpenAccessCollection {
+public class PubMedInitialCollection extends OpenAccessCollection {
 
   static final String resourceName = "SamplePMCCorpus.txt";
-  static final InitialCollection singleton = new InitialCollection();
-  final Collection<PubMedOpenAccessPaper> myPapers;
+  static final PubMedInitialCollection singleton = new PubMedInitialCollection();
+  final Collection<OpenAccessPaper> myPapers;
 
   /**
    *
    * @return a collection of papers
    */
-  public Collection<PubMedOpenAccessPaper> getMyPapers() {
+  public Collection<OpenAccessPaper> getMyPapers() {
    assert myPapers!= null : "they must have been loaded by here!";
     return myPapers;
   }
   
-  InitialCollection() {
+  PubMedInitialCollection() {
     super("Sample PMC Corpus Collection");
     myPapers=this.load();
   }
 
   /**
    *
-   * @return an InitialCollection object
+   * @return an PubMedInitialCollection object
    */
-  public static InitialCollection get() {
+  public static PubMedInitialCollection get() {
     return singleton;
   }  
   
@@ -67,7 +68,7 @@ public class InitialCollection extends OpenAccessCollection {
    * @return the collection of papers
    */
   @Override
-  final protected Collection<PubMedOpenAccessPaper> load() {
+  final protected Collection<OpenAccessPaper> load() {
     InputStream paperListStream;    
       paperListStream = //      Thread.currentThread().getContextClassLoader().getResourceAsStream(resourceName);
             this.getClass().getResourceAsStream(resourceName);
@@ -77,7 +78,7 @@ public class InitialCollection extends OpenAccessCollection {
     Predicate<String> isPaperID = (line) -> {
       return line != null && line.length() > 0 && line.startsWith("PMC");
     };
-    Set<PubMedOpenAccessPaper> paperSet
+    Set<OpenAccessPaper> paperSet
         = paperList.lines()
         .map(String::trim)
         .filter(isPaperID)
