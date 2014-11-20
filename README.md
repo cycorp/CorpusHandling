@@ -8,6 +8,7 @@ Included
 * All source files
 * A suite of tests including integration tests using a sample corpus
 * A sample corpus consisting of 40 PMC IDs of freely available PubMed articles
+* A corpus consisting of AIMed abstract IDs (see ftp://ftp.cs.utexas.edu/pub/mooney/bio-data/)
 * An example config.json file
 * Resource files related to generating code using the JAXB plugin
 * This README file
@@ -22,20 +23,23 @@ Requirements
 Description and Usage
 ---------------------
 
-The CorpusHandling project is a Java library that pulls articles from PubMed
-using a PMC identification number.  The library does two things:
+The CorpusHandling project is a Java library that pulls content out of biomedical
+articles.  At the moment, it handles PubMed articles using a PMC identification number
+and AIMed abstracts.  The library does two things:
 
-1. Given a list of PMC IDs, the library can create subcorpora of any number of
-   articles, making sure that there is no overlap across the subcorpora.
+1. Given a list of PMC IDs or abstract names in the case of AIMed, the library can create 
+   subcorpora of any number of articles, making sure that there is no overlap across the subcorpora.
 
 2. The library generates classes based on an xsd using the jaxb plugin.  These
    generated classes are used to extract information from the nxml
    representations of the articles.  The following information is currently
-   extracted:
+   extracted from PubMed articles:
     * Title
     * Abstract
     * Information related to referencing the paper such as the author list and
       publication date
+
+For AIMed, we extract the titles, abstracts, and tagged proteins.
 
 To use the library, you will have to install it to your local Maven
 repository.  This will generate the necessary sources for creating subcorpora
@@ -73,12 +77,13 @@ You will have to specify the paths to your base directory and subcorpus
 directory in the config file.  See `config.json.example` for more information.
 
 There are two places in the code that you will need to edit based on the name
-of your corpus:
+of your corpus (these instructions refer to PubMed articles; for AIMed, make changes
+to the relevant classes instead):
 
-1. `InitialCollection.java` -- Change `resourceName` to the name of your
+1. `PubMedInitialCollection.java` -- Change `resourceName` to the name of your
    corpus list file.  This file should live in the `com.cyc.corpus.papers`
    package in `src/main/resources`.
-2. `Subcollection.java` -- Change `usedArticleListFileName` to the name of the
+2. `PubMedSubcollection.java` -- Change `usedArticleListFileName` to the name of the
    file you created above.
 
 Once all of this is in place, you can install the library and all errors
@@ -87,7 +92,7 @@ should go away.
 There are a few tests that you can look at to get an idea of how to use the
 library:
 
-1. `SubcollectionIT.java` -- The tests in this class demonstrate how to create
+1. `PubMedSubcollectionIT.java` -- The tests in this class demonstrate how to create
    and retrieve a subcorpus.
 2. `PubMedOpenAccessPaperIT.java` -- The tests in this class demonstrate how
    to extract information from a particular article.  The tests are based on
