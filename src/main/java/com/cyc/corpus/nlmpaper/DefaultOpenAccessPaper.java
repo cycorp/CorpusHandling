@@ -35,7 +35,9 @@ public class DefaultOpenAccessPaper implements OpenAccessPaper {
 
   //// Constructors
 
-  /** Creates a new instance of DefaultOpenAccessPaper. */
+  /** Creates a new instance of DefaultOpenAccessPaper.
+   * @param paperID the ID for the paper
+   */
   public DefaultOpenAccessPaper(String paperID) {
     this.paperID = paperID;
   }

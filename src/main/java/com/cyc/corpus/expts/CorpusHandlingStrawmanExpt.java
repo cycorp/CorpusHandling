@@ -1,4 +1,3 @@
-
 package com.cyc.corpus.expts;
 
 /*
@@ -20,7 +19,6 @@ package com.cyc.corpus.expts;
  * limitations under the License.
  * #L%
  */
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
@@ -29,11 +27,10 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 /**
- * CorpusHandlingStrawmanExpt defines where the CorpusHandling project will place the
- * corpora it creates.  It reads config.json as saved in /src/main/resources to get the base
- * directory path and the subcorpora directory path.
+ * CorpusHandlingStrawmanExpt defines where the CorpusHandling project will place the corpora it
+ * creates. It reads config.json as saved in /src/main/resources to get the base directory path and
+ * the subcorpora directory path.
  *
  */
 public class CorpusHandlingStrawmanExpt implements Experiment {
@@ -41,14 +38,19 @@ public class CorpusHandlingStrawmanExpt implements Experiment {
   String baseDir, subCorporaDir;
 
   public CorpusHandlingStrawmanExpt() {
-    try {
-      InputStream stream = getClass().getClassLoader().getResourceAsStream("config.json");
-      String configContent = IOUtils.toString(stream, "UTF-8");
-      JSONObject config = new JSONObject(configContent);
-      this.baseDir = config.getString("baseDir");
-      this.subCorporaDir = config.getString("subCorporaDir");
-    } catch (JSONException | IOException ex) {
-      Logger.getLogger(CorpusHandlingStrawmanExpt.class.getName()).log(Level.SEVERE, null, ex);
+    if (getClass().getClassLoader().getResourceAsStream("config.json") == null) {
+      System.out.println("ERROR: It is likely that you have not created a config.json file or that it is misconfigured. Please see README for more information.");
+      throw new RuntimeException();
+    } else {
+      try {
+        InputStream stream = getClass().getClassLoader().getResourceAsStream("config.json");
+        String configContent = IOUtils.toString(stream, "UTF-8");
+        JSONObject config = new JSONObject(configContent);
+        this.baseDir = config.getString("baseDir");
+        this.subCorporaDir = config.getString("subCorporaDir");
+      } catch (JSONException | IOException e) {
+        Logger.getLogger(CorpusHandlingStrawmanExpt.class.getName()).log(Level.SEVERE, null, e);
+      } 
     }
   }
 
@@ -56,7 +58,7 @@ public class CorpusHandlingStrawmanExpt implements Experiment {
   public String getBaseDir() {
     return baseDir;
   }
-  
+
   @Override
   public String getSubCorporaDir() {
     return subCorporaDir;
