@@ -51,7 +51,7 @@ public class PubMedInitialCollection extends OpenAccessCollection {
   
   PubMedInitialCollection() {
     super("Sample PMC Corpus Collection");
-    myPapers=this.load();
+    myPapers=this.load(); 
   }
 
   /**

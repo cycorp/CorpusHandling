@@ -56,6 +56,7 @@ public class AIMedCollection {
   //// Constructors
   /**
    * Creates a new instance of AIMedCollection.
+   * @param collectionName the name of the AIMed corpus
    */
   public AIMedCollection(String collectionName) {
     this.name = collectionName;

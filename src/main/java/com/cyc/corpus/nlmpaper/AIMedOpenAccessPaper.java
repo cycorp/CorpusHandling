@@ -285,7 +285,8 @@ class AIMedArticle {
         }
       }
     } catch (DOMException | IOException | ParserConfigurationException | SAXException ex) {
-      throw new RuntimeException(ex);
+      Logger.getLogger(AIMedOpenAccessPaper.class.getName()).log(Level.SEVERE, null, ex);
+      //throw new RuntimeException(ex);
     }
   }
 
