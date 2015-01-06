@@ -4,7 +4,7 @@ package com.cyc.corpus.papers;
  * #%L
  * CorpusHandling
  * %%
- * Copyright (C) 2014 Cycorp, Inc
+ * Copyright (C) 2014 - 2015 Cycorp, Inc
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public abstract class OpenAccessSubcollection extends OpenAccessCollection {
    * @return a collection of papers
    */
   @Override
-  protected final Collection<OpenAccessPaper> load() {
+  protected  Collection<OpenAccessPaper> load() {
     // Access to file that tracks articles already in a subcollection
     Set<OpenAccessPaper> paperSet = new HashSet<>();
     File subCorpusFile = new File(subCorpusPath());

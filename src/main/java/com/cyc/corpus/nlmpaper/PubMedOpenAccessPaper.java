@@ -4,7 +4,7 @@ package com.cyc.corpus.nlmpaper;
  * #%L
  * CorpusHandling
  * %%
- * Copyright (C) 2014 Cycorp, Inc
+ * Copyright (C) 2014 - 2015 Cycorp, Inc
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -237,7 +237,9 @@ public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
    *
    * @return the title of the article
    */
+  @Override
   public String getTitle() {
+    System.out.println("I am getTitle from: " + this.getClass());
     if (isPresent()) {
       ArticleTitle title = article().getFront().getArticleMeta().getTitleGroup().getArticleTitle();
       String titleString = unfancy(title.getContent());
@@ -250,6 +252,7 @@ public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
    *
    * @return a set of Strings consisting of all of the authors listed as contributers on the paper
    */
+  @Override
   public Set<String> getAuthors() {
     Set<String> authors = new HashSet<>();
     if (isPresent()) {
@@ -280,6 +283,7 @@ public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
    * 
    * @return a date
    */
+  @Override
   public Date getPublicationDate() {
     Date pubDate = null;
     String pubDateStr = "";
@@ -354,6 +358,7 @@ public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
    * 
    * @return a map consisting of some publication information
    */
+  @Override
   public Map getPubInfo() {
     Map collectionInfo = new HashMap();
     if (isPresent()) {
@@ -389,6 +394,7 @@ public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
    *
    * @return the title of the publication in which the article was published.
    */
+  @Override
   public String getJournalTitle() {
     if (isPresent()) {
       try {
@@ -408,6 +414,7 @@ public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
    *
    * @return the publisher of the article
    */
+  @Override
   public String getPublisher() {
     String publisherString = "";
     List<Object> pubList = new ArrayList<>();
@@ -438,6 +445,7 @@ public class PubMedOpenAccessPaper implements OpenAccessPaper, Serializable {
    *
    * @return String with the abstract
    */
+  @Override
   public String getAbstract() {
     final List<Serializable> complexParts = new ArrayList<>();
     if (isPresent()) {

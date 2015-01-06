@@ -9,7 +9,7 @@ package com.cyc.corpus.nlmpaper;
  * #%L
  * CorpusHandling
  * %%
- * Copyright (C) 2014 Cycorp, Inc
+ * Copyright (C) 2014 - 2015 Cycorp, Inc
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,8 +39,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
@@ -242,6 +244,31 @@ public class AIMedOpenAccessPaper implements OpenAccessPaper, Serializable {
     System.out.println("TITLE:    " + m.getTitle());
     System.out.println("ABSTRACT: " + m.getAbstract());
     System.out.println("PROTS:    " + m.getTaggedProteins());
+  }
+
+  @Override
+  public Map getPubInfo() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public String getJournalTitle() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public String getPublisher() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public Date getPublicationDate() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public Set<String> getAuthors() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 }
 
