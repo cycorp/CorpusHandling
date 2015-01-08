@@ -6,7 +6,7 @@ package com.cyc.corpus.nlmpaper;
  * #%L
  * CorpusHandling
  * %%
- * Copyright (C) 2014 Cycorp, Inc
+ * Copyright (C) 2014 - 2015 Cycorp, Inc
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,15 @@ package com.cyc.corpus.nlmpaper;
 //// Internal Imports
 
 //// External Imports
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class DefaultOpenAccessPaper implements OpenAccessPaper {
+public class DefaultOpenAccessPaper implements OpenAccessPaper, Serializable {
   
   private final String paperID;
 
@@ -60,6 +64,36 @@ public class DefaultOpenAccessPaper implements OpenAccessPaper {
 
   @Override
   public String getAbstract() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public String getTitle() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public Map getPubInfo() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public String getJournalTitle() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public String getPublisher() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public Date getPublicationDate() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
+
+  @Override
+  public Set<String> getAuthors() {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
 

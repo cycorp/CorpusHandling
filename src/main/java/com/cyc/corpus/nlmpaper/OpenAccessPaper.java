@@ -5,11 +5,16 @@
  */
 package com.cyc.corpus.nlmpaper;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Map;
+import java.util.Set;
+
 /*
  * #%L
  * CorpusHandling
  * %%
- * Copyright (C) 2014 Cycorp, Inc
+ * Copyright (C) 2014 - 2015 Cycorp, Inc
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,4 +38,11 @@ public interface OpenAccessPaper {
 
   public String getPaperID();
   public String getAbstract();
+  public String getTitle();
+  public Map getPubInfo();
+  public String getJournalTitle();
+  public String getPublisher();
+  public Date getPublicationDate();
+  public Set<String> getAuthors();
+  
 }
